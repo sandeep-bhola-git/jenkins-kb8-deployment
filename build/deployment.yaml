@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-kb8-deployment #The name of the Kubernetes Deployment to be created in the Kubernetes cluster
+  labels:
+    app: goping-app
+spec:
+  replicas: 2 #The number of pods to be created in the Kubernetes cluster for the React.js application container
+  selector:
+    matchLabels:
+      app: goping-app
+  template:
+    metadata:
+      labels:
+        app: goping-app 
+    spec:
+      containers:
+      - name: goping-app #The name of the react.js application container
+        image: 11012012/goping-app:latest #The Docker image for building the React.js application container
+        ports:
+        - containerPort: 7701 #The port for the React.js application   container
